@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: black;
+  font-family: "Roboto", sans-serif;
+}
+.banner-container {
+  background-color: chartreuse;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.banner-heading {
+  background-color: #fdc400;
+  justify-content: center;
+  display: flex;
+}
+
+.banner-heading img {
+  width: 70%;
+}
+
+.banner-text {
+  background-color: #000;
+  text-align: center;
+  font-size: 30px;
+  height: 20vh;
+  font-family: "Roboto", sans-serif;
+  padding-top: 20px;
+  color: #feab00;
+  font-weight: bold;
+}

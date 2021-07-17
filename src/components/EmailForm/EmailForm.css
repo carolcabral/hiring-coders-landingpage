@@ -1,0 +1,24 @@
+.form-wrapper {
+  background-color: #feab00;
+  color: #c71a1d;
+  height: 15vh;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 18px;
+  padding-bottom: 20px;
+}
+
+.form-input {
+  padding: 8px 20px;
+  border-radius: 2px;
+  margin-right: 10px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  margin-bottom: 16px;
+  border: 1px solid #fff;
+}
+
+.form-input::placeholder {
+  color: #b1b1b1;
+}
