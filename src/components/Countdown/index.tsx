@@ -4,8 +4,11 @@ import "./Countdown.css";
 const TARGET_DATE = new Date("2021-11-26").toISOString();
 const SECONDS_IN_MINUTE = 60;
 const SECONDS_IN_HOUR = 60 * SECONDS_IN_MINUTE;
+const ONE_SECOND_IN_MILLIS = 1000;
+var DAYS_IN_SECONDS = 60 * 60 * 24;
 
 const parseTimeRemaining = (totalSeconds: number): TimeSplit => {
+  const days = Math.floor(totalSeconds / DAYS_IN_SECONDS);
   const hours = Math.floor(totalSeconds / SECONDS_IN_HOUR);
   const minutes = Math.floor(
     (totalSeconds % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE
@@ -14,6 +17,7 @@ const parseTimeRemaining = (totalSeconds: number): TimeSplit => {
     (totalSeconds % SECONDS_IN_HOUR) % SECONDS_IN_MINUTE
   );
   return {
+    days: days.toFixed(0),
     hours: fillWithZero(2, hours),
     minutes: fillWithZero(2, minutes),
     seconds: fillWithZero(2, seconds),
@@ -29,7 +33,6 @@ const tick = (
   targetDate: string,
   dispatchFn: React.Dispatch<React.SetStateAction<TimeSplit>>
 ) => {
-  const ONE_SECOND_IN_MILLIS = 1000;
   let finalDate = new Date(targetDate);
   let now = new Date();
 
@@ -42,6 +45,7 @@ const tick = (
 };
 
 interface TimeSplit {
+  days: string;
   hours: string;
   minutes: string;
   seconds: string;
@@ -49,6 +53,7 @@ interface TimeSplit {
 
 const Countdown = ({}) => {
   const [timeRemaining, setTime] = useState<TimeSplit>({
+    days: "00",
     hours: "00",
     minutes: "00",
     seconds: "00",
@@ -60,7 +65,7 @@ const Countdown = ({}) => {
     <>
       <div className="countdown-wrapper">
         <div className="countdown-item">
-          XX
+          {timeRemaining.days}
           <span>days</span>
         </div>
 
