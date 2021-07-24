@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Countdown.css";
+import "../../css/Countdown.css";
 
 const TARGET_DATE = new Date("2021-11-26").toISOString();
 const SECONDS_IN_MINUTE = 60;

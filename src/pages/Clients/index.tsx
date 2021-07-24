@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../../components/Button";
+import "../../css/Form.css";
 
 interface Client {
   id: number;
@@ -11,69 +12,123 @@ interface Client {
 }
 
 function Clients() {
-  var [id, setId] = useState(0);
+  var [client, setClient] = useState<Client>({
+    id: 0,
+    name: "",
+    email: "",
+    cpf: 0,
+    birth: "",
+    contact: "",
+  });
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [cpf, setCPF] = useState(0);
-  const [birth, setBirth] = useState("");
-  const [contact, setContact] = useState("");
+  const [toggle, setToggle] = useState(false);
 
+  function handleChange(e: any) {
+    const value = e.target.value;
+    setClient({
+      ...client,
+      [e.target.name]: value,
+    });
+  }
   function handleSubmit(e: any) {
     e.preventDefault();
     var newClient: Client = {
-      id: id,
-      name: name,
-      email: email,
-      cpf: cpf,
-      birth: birth,
-      contact: contact,
+      id: client.id,
+      name: client.name,
+      email: client.email,
+      cpf: client.cpf,
+      birth: client.birth,
+      contact: client.contact,
     };
 
     localStorage.setItem("Client", JSON.stringify(newClient));
-    setId(id++);
+    setClient({ ...client, id: client.id + 1 });
     console.log("Saved on localStorage: ", localStorage.getItem("Client"));
+    setToggle(false);
+  }
+
+  function handleClick() {
+    setToggle(!toggle);
   }
 
   return (
     <>
-      <Button
-        buttonStyle="btn--primary"
-        buttonSize="btn--large"
-        path="/clients"
-      >
-        Novo client
-      </Button>
+      <div className="container">
+        {!toggle && (
+          <div className="container-button">
+            <Button
+              buttonStyle="btn--secondary"
+              buttonSize="btn--large"
+              path="/clients"
+              onClick={handleClick}
+              icon="fas fa-plus"
+            >
+              Novo client
+            </Button>
+          </div>
+        )}
 
-      <div className="form-client">
-        <form onSubmit={handleSubmit}>
-          <label>
-            Nome:
-            <input type="text" placeholder="" />
-          </label>
+        {toggle && (
+          <div className="form-client form-box">
+            <form onSubmit={handleSubmit}>
+              <label>
+                Nome:
+                <input
+                  type="text"
+                  name="name"
+                  value={client.name}
+                  onChange={handleChange}
+                  placeholder=""
+                />
+              </label>
 
-          <label>
-            E-mail:
-            <input type="email" placeholder="contato@vtex.com" />
-          </label>
+              <label>
+                E-mail:
+                <input
+                  type="email"
+                  name="email"
+                  value={client.email}
+                  onChange={handleChange}
+                  placeholder="contato@vtex.com"
+                />
+              </label>
 
-          <label>
-            CPF:
-            <input type="text" placeholder="XXX.XXX.XXX-XX" />
-          </label>
+              <label>
+                CPF:
+                <input
+                  type="text"
+                  name="cpf"
+                  value={client.cpf}
+                  onChange={handleChange}
+                  placeholder="XXX.XXX.XXX-XX"
+                />
+              </label>
 
-          <label>
-            Data de nascimento:
-            <input type="date" />
-          </label>
+              <label>
+                Data de nascimento:
+                <input
+                  type="date"
+                  name="birth"
+                  value={client.birth}
+                  onChange={handleChange}
+                />
+              </label>
 
-          <label>
-            Número para contato
-            <input type="text" placeholder="(XX) X XXXX-XXXX" />
-          </label>
+              <label>
+                Número para contato
+                <input
+                  type="text"
+                  name="contact"
+                  value={client.contact}
+                  onChange={handleChange}
+                  placeholder="(XX) X XXXX-XXXX"
+                />
+              </label>
 
-          <input type="submit" value="Cadastrar" />
-        </form>
+              <input type="submit" value="Cadastrar" />
+            </form>
+          </div>
+        )}
       </div>
     </>
   );

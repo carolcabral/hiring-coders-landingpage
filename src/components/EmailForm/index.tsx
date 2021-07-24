@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "../Button";
-import "./EmailForm.css";
+import "../../css/EmailForm.css";
 
 // TODO: Validar campo email
 

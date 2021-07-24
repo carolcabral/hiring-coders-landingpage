@@ -1,23 +1,29 @@
 import React from "react";
 import { Button } from "../../components/Button";
+import "../../css/Home.css";
 
 function Home() {
   return (
     <>
-      <Button
-        buttonStyle="btn--primary"
-        buttonSize="btn--large"
-        path="/clients"
-      >
-        Clientes
-      </Button>
-      <Button
-        buttonStyle="btn--primary"
-        buttonSize="btn--large"
-        path="/products"
-      >
-        Produtos
-      </Button>
+      <div className="home-container">
+        <Button
+          buttonStyle="btn--primary"
+          buttonSize="btn--large"
+          path="/clients"
+        >
+          Clientes
+        </Button>
+
+        <br />
+
+        <Button
+          buttonStyle="btn--primary"
+          buttonSize="btn--large"
+          path="/products"
+        >
+          Produtos
+        </Button>
+      </div>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Button.css";
+import "../../css/Button.css";
 
 const STYLES = ["btn--primary", "btn--outline"];
 const SIZES = ["btn--medium", "btn--large"];
@@ -12,6 +12,7 @@ export const Button = ({
   buttonStyle,
   buttonSize,
   path,
+  icon,
 }: {
   children?: any;
   type?: any;
@@ -19,6 +20,7 @@ export const Button = ({
   buttonStyle?: any;
   buttonSize?: any;
   path?: any;
+  icon?: string;
 }) => {
   const checkButtonStyle = STYLES.includes(buttonStyle)
     ? buttonStyle
@@ -32,6 +34,7 @@ export const Button = ({
         onClick={onClick}
         type={type}
       >
+        {icon && <i className={icon} />}
         {children}
       </button>
     </Link>

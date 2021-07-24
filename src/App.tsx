@@ -26,6 +26,7 @@ function App() {
             <Products />
           </Route>
         </Switch>
+        <BannerBlackFriday />
         <Footer />
       </Router>
     </>
