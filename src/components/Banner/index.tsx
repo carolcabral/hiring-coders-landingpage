@@ -1,13 +1,21 @@
 import React, { useState } from "react";
-import EmailForm from "../EmailForm";
 import "../../css/Banner.css";
 import bannerImg from "../../assets/black-friday.jpg";
 import Countdown from "../Countdown";
+import { Button } from "../Button";
 
 function BannerBlackFriday() {
   const [toggle, setToggle] = useState(true);
+  const [email, setEmail] = useState("");
+
   function handleClick() {
     setToggle(!toggle);
+  }
+
+  function handleEmailForm() {
+    localStorage.setItem("email", email);
+    console.log("Saved on localStorage: ", localStorage.getItem("email"));
+    setToggle(false);
   }
   return (
     <>
@@ -28,7 +36,19 @@ function BannerBlackFriday() {
             <p>Seus produtos prediletos com até 70% de desconto!</p>
           </div>
           <Countdown />
-          <EmailForm />
+          <form className="form-wrapper">
+            <p>Cadastre seu e-mail e não fique fora dessa!</p>
+            <input
+              className="form-input"
+              type="email"
+              value={email}
+              placeholder="Enter your e-mail"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Button buttonStyle="btn--primary" onClick={handleEmailForm}>
+              Subscribe
+            </Button>
+          </form>
         </div>
       )}
     </>
